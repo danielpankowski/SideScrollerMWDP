@@ -5,7 +5,9 @@ public class PlayerMovement : MonoBehaviour
     private const string groundTag = "Ground";
     private const float horizontalSpeed = 100;
     private const int verticalSpeed = 300;
-    public Rigidbody rigidbody;
+
+    [SerializeField]
+    private Rigidbody rigidbody;
 
     private bool isGrounded;
 
@@ -16,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-
     }
 
     private void Start()
