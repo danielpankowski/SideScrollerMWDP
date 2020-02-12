@@ -3,8 +3,8 @@
 public class PlayerMovement : MonoBehaviour
 {
     private const string groundTag = "Ground";
-    private const float horizontalSpeed = 100;
-    private const int verticalSpeed = 300;
+    private const float horizontalSpeed = 150;
+    private const int verticalSpeed = 400;
 
     [SerializeField]
     private Rigidbody rigidbody;
