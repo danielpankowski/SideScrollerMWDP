@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigidbody;
 
     private bool isGrounded;
+    private bool isJumpActionCalled;
 
     private void Awake()
     {
@@ -37,7 +39,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        HandleGetKeyDownInput();
+    }
 
+    private void HandleGetKeyDownInput()
+    {
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        {
+            isJumpActionCalled = true;
+            isGrounded = false;
+        }
     }
 
     private void FixedUpdate()
@@ -56,10 +67,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rigidbody.velocity = new Vector3(-horizontalSpeed * Time.deltaTime, rigidbody.velocity.y);
         }
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (isJumpActionCalled)
         {
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, verticalSpeed * Time.deltaTime);
-            isGrounded = false;
+            isJumpActionCalled = false;
         }
     }
 
