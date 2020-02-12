@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Text gameOverText;
     [SerializeField]
-    private Rigidbody rigidbody;
+    private PlayerMovement playerMovement;
 
     private const float maxHealth = 100;
     private float currentHealth;
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public void GetHit(float damage)
     {
         currentHealth -= damage;
-        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 200 * Time.deltaTime);
+        playerMovement.ThrowBack();
         if (currentHealth <= 0)
         {
             gameOver = true;

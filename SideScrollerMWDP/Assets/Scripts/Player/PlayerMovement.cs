@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
     private bool isJumpActionCalled;
-
-    public CameraFollow cameraFollow;
 
     private void Awake()
     {
@@ -58,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     private void HandleMovementFromInput()
     {
         if (Input.GetKey(KeyCode.D))
@@ -75,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.velocity = new Vector3(rigidbody.velocity.x, verticalSpeed * Time.deltaTime);
             isJumpActionCalled = false;
         }
+    }
+
+    public void ThrowBack()
+    {
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 200 * Time.deltaTime);
     }
 
     private void LateUpdate()
