@@ -5,9 +5,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Text gameOverText;
+    [SerializeField]
+    private Rigidbody rigidbody;
 
     private const float maxHealth = 100;
     private float currentHealth;
+    private bool gameOver = false;
 
     private void Awake()
     {
@@ -16,7 +19,12 @@ public class PlayerController : MonoBehaviour
 
     public void GetHit(float damage)
     {
-        //1. Otrzymywanie obrazen
-        //2. GameOver <= 0
+        currentHealth -= damage;
+        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 200 * Time.deltaTime);
+        if (currentHealth <= 0)
+        {
+            gameOver = true;
+        }
+        gameOverText.gameObject.SetActive(gameOver);
     }
 }
