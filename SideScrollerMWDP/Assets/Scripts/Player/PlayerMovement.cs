@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private bool isJumpActionCalled;
 
+    public CameraFollow cameraFollow;
+
     private void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody>();
@@ -42,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         HandleGetKeyDownInput();
     }
 
+    private void FixedUpdate()
+    {
+        HandleMovementFromInput();
+    }
+
     private void HandleGetKeyDownInput()
     {
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
@@ -51,10 +58,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        HandleMovementFromInput();
-    }
 
     private void HandleMovementFromInput()
     {

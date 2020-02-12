@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    [SerializeField]
+    private Transform lookAt;
 
-    public Transform lookAt;
     private Vector3 offset = new Vector3(0, 0, -10f);
+    private Vector3 cameraPosition;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        transform.position = lookAt.position + offset;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
     {
-        transform.position = lookAt.transform.position + offset;
+        transform.position = new Vector3(lookAt.transform.position.x, lookAt.transform.position.y, transform.position.z);
     }
 }
