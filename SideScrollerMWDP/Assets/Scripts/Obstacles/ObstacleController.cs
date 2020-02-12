@@ -2,9 +2,15 @@
 
 public class ObstacleController : MonoBehaviour
 {
-    float damage = 50;
+    [SerializeField]
+    private float throwBackForce = 10;
+    [SerializeField]
+    private float damage = 50;
+
+
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<PlayerController>().GetHit(damage);
+        Vector3 directon = (collision.transform.position - transform.position).normalized;
+        collision.gameObject.GetComponent<PlayerController>().GetHit(damage, directon, throwBackForce);
     }
 }

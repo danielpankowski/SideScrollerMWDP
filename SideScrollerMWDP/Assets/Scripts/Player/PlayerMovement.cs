@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody rigidbody;
 
+    private bool dazed = false;
     private bool isGrounded;
     private bool isJumpActionCalled;
 
@@ -48,34 +49,41 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleGetKeyDownInput()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (!dazed)
         {
-            isJumpActionCalled = true;
-            isGrounded = false;
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+            {
+                isJumpActionCalled = true;
+                isGrounded = false;
+            }
         }
     }
 
     private void HandleMovementFromInput()
     {
-        if (Input.GetKey(KeyCode.D))
+        if (!dazed)
         {
-            //rigidbody.velocity = Vector3.right * 100 * Time.deltaTime;
-            rigidbody.velocity = new Vector3(horizontalSpeed * Time.deltaTime, rigidbody.velocity.y);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            rigidbody.velocity = new Vector3(-horizontalSpeed * Time.deltaTime, rigidbody.velocity.y);
-        }
-        if (isJumpActionCalled)
-        {
-            rigidbody.velocity = new Vector3(rigidbody.velocity.x, verticalSpeed * Time.deltaTime);
-            isJumpActionCalled = false;
+            if (Input.GetKey(KeyCode.D))
+            {
+                //rigidbody.velocity = Vector3.right * 100 * Time.deltaTime;
+                rigidbody.velocity = new Vector3(horizontalSpeed * Time.deltaTime, rigidbody.velocity.y);
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                rigidbody.velocity = new Vector3(-horizontalSpeed * Time.deltaTime, rigidbody.velocity.y);
+            }
+            if (isJumpActionCalled)
+            {
+                rigidbody.velocity = new Vector3(rigidbody.velocity.x, verticalSpeed * Time.deltaTime);
+                isJumpActionCalled = false;
+            }
         }
     }
 
-    public void ThrowBack()
+    public void ThrowBack(Vector3 directon, float throwBackForce)
     {
-        rigidbody.velocity = new Vector3(rigidbody.velocity.x, 200 * Time.deltaTime);
+        dazed = true;
+        rigidbody.velocity = directon * throwBackForce;
     }
 
     private void LateUpdate()

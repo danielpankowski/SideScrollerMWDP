@@ -17,10 +17,11 @@ public class PlayerController : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void GetHit(float damage)
+    public void GetHit(float damage, Vector3 direction, float throwBackForce)
     {
+        Debug.LogError("GetHit");
         currentHealth -= damage;
-        playerMovement.ThrowBack();
+        playerMovement.ThrowBack(direction, throwBackForce);
         if (currentHealth <= 0)
         {
             gameOver = true;
