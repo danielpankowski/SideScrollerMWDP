@@ -1379,21 +1379,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2091795286396826775, guid: 8edf651f874e5b148b9d8b6a76a48108,
-        type: 3}
-      propertyPath: throwBackForce
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2091795286396826775, guid: 8edf651f874e5b148b9d8b6a76a48108,
-        type: 3}
-      propertyPath: damage
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633498797543460126, guid: 8edf651f874e5b148b9d8b6a76a48108,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5246715140835307936, guid: 8edf651f874e5b148b9d8b6a76a48108,
         type: 3}
       propertyPath: m_Name
